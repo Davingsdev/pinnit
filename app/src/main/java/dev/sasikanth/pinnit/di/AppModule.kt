@@ -17,7 +17,8 @@ import java.time.ZoneId
   includes = [
     NotificationModule::class,
     AssistedInjectModule::class,
-    PreferencesModule::class
+    PreferencesModule::class,
+    DateTimeFormatterModule::class
   ]
 )
 object AppModule {
