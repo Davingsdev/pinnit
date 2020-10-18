@@ -44,7 +44,7 @@ class ScheduleWorker(context: Context, parameters: WorkerParameters) : Coroutine
       userClock: UserClock
     ): WorkRequest {
       val currentDateTime = LocalDateTime.now(userClock)
-      val scheduledAt = schedule.scheduleDate.atTime(schedule.scheduleTime)
+      val scheduledAt = schedule.scheduleDate!!.atTime(schedule.scheduleTime!!)
       val initialDelay = Duration.between(scheduledAt, currentDateTime)
 
       val inputData = workDataOf(
@@ -97,7 +97,7 @@ class ScheduleWorker(context: Context, parameters: WorkerParameters) : Coroutine
     val schedule = notification.schedule!!
     val scheduleType = schedule.scheduleType!!
 
-    val scheduledAt = schedule.scheduleDate.atTime(schedule.scheduleTime)
+    val scheduledAt = schedule.scheduleDate!!.atTime(schedule.scheduleTime!!)
     val updatedScheduledAt = when (scheduleType) {
       ScheduleType.Daily -> scheduledAt.plusDays(1L)
       ScheduleType.Weekly -> scheduledAt.plusWeeks(1L)
