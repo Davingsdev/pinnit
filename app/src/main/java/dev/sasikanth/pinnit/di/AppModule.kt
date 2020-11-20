@@ -5,6 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dev.sasikanth.pinnit.data.AppDatabase
+import dev.sasikanth.pinnit.data.migrations.Migration_1_2
 import dev.sasikanth.pinnit.notifications.NotificationModule
 import dev.sasikanth.pinnit.utils.CoroutineDispatcherProvider
 import dev.sasikanth.pinnit.utils.DispatcherProvider
@@ -27,6 +28,7 @@ object AppModule {
   @Provides
   fun providesAppDatabase(application: Application): AppDatabase {
     return Room.databaseBuilder(application, AppDatabase::class.java, "pinnit-db")
+      .addMigrations(Migration_1_2)
       .build()
   }
 
